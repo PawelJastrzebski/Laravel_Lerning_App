@@ -23,3 +23,6 @@ Route::get('/user/{id}', function ($id){
 //    return view('pages.about');
     return "User id ". $id;
 });
+
+
+Route::resource("posts","PostsController");

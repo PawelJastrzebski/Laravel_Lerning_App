@@ -16,7 +16,7 @@ services:
       - mysql
 
   mysql:
-    image: mysql:latest
+    image: mysql:5.7.25
     container_name: MySQL_PHP
     ports:
       - 3306:3306

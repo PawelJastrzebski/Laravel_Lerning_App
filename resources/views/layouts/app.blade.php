@@ -12,7 +12,12 @@
 <body>
     @include('layouts.navBar')
     <div class="container mt-5">
-    @yield('content');
+        @include("inc.massages")
+    @yield('content')
     </div>
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'article-ckeditor' );
+    </script>
 </body>
 </html>
