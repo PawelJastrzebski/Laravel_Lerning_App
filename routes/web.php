@@ -26,3 +26,6 @@ Route::get('/user/{id}', function ($id){
 
 
 Route::resource("posts","PostsController");
+Auth::routes();
+
+Route::get('/dashboard', 'DashBoardController@index')->name('home');

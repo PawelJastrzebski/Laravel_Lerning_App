@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
 {
@@ -47,6 +49,7 @@ class PostsController extends Controller
         $post = new Post();
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+        $post->user_id = auth()->user()->id;
         $post->save();
 
         return redirect('/posts')->with('success',"Post Created");
@@ -60,8 +63,19 @@ class PostsController extends Controller
      */
     public function show($id)
     {
+        /** @var  boolean $canEdit */
+        $canEdit = false;
+
+        /** @var User $user */
+        $user = User::find(Auth::id());
         $post =  Post::find($id);
-        return view("posts.show")->with("post",$post);
+
+
+        if($user != null){
+            $canEdit = $user->hasPost($post);
+        }
+
+        return view("posts.show")->with("post",$post)->with('canEdit', $canEdit);
     }
 
     /**

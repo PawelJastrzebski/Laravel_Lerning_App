@@ -36,4 +36,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    function posts(){
+        return $this->hasMany("App\Post","user_id");
+    }
+
+    function hasPost(Post $checkPost){
+        /** @var Post[] $posts */
+        $posts = $this->posts;
+        foreach ($posts as $post){
+            if($post->id == $checkPost->id){
+                return true;
+            }
+        }
+        return false;
+    }
 }
