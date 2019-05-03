@@ -22,7 +22,9 @@
 
                             @foreach($myPosts as $post)
                                 <h4><a href="./posts/{{$post->id}}"> {{$post->title}}</a></h4>
-                                <p>{!!$post->body!!}</p>
+                                <p class="text-xl-left d-block w-50 float-left">Created at:</p>
+                                <p class="text-xl-right d-block w-50 float-left">{!!$post->created_at!!}</p>
+                                <br />
                                 <hr>
                             @endforeach
                         @else
